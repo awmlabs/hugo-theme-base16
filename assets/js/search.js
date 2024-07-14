@@ -39,7 +39,7 @@ function executeSearch(searchQuery) {
 
 function populateResults(result) {
   $.each(result, (key, value) => {
-    const { contents } = value.item;
+    const { content } = value.item;
     let snippet = '';
     const snippetHighlights = [];
     if (fuseOptions.tokenize) {
@@ -48,13 +48,13 @@ function populateResults(result) {
       $.each(value.matches, (matchKey, mvalue) => {
         if (mvalue.key === 'tags' || mvalue.key === 'categories') {
           snippetHighlights.push(mvalue.value);
-        } else if (mvalue.key === 'contents') {
+        } else if (mvalue.key === 'content') {
           const start = mvalue.indices[0][0] - summaryInclude > 0 ? mvalue.indices[0][0] - summaryInclude : 0;
           const end =
-            mvalue.indices[0][1] + summaryInclude < contents.length
+            mvalue.indices[0][1] + summaryInclude < content.length
               ? mvalue.indices[0][1] + summaryInclude
-              : contents.length;
-          snippet += contents.substring(start, end);
+              : content.length;
+          snippet += content.substring(start, end);
           snippetHighlights.push(
             mvalue.value.substring(mvalue.indices[0][0], mvalue.indices[0][1] - mvalue.indices[0][0] + 1),
           );
@@ -63,7 +63,7 @@ function populateResults(result) {
     }
 
     if (snippet.length < 1) {
-      snippet += contents.substring(0, summaryInclude * 2);
+      snippet += content.substring(0, summaryInclude * 2);
     }
     // pull template from hugo templarte definition
     const templateDefinition = $('#search-result-template').html();
