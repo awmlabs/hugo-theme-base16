@@ -1,4 +1,4 @@
-$fonts: 'Source Code Pro', monospace;
+$fonts: "Hiragino Kaku Gothic ProN", Meiryo, Tahoma, Verdana, Arial, sans-serif;
 $max-width: 52em;
 
 @mixin breakpointMd {
@@ -25,7 +25,7 @@ $base: (
   '08': #f2777a,
   '09': #f99157,
   '0a': #fc6,
-  '0b': #9c9,
+  '0b': #3c3,
   '0c': #6cc,
   '0d': #69c,
   '0e': #c9c,
